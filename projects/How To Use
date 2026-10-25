@@ -1,0 +1,5 @@
+Save the cover from Behance and name it, for example, 01-my-new-brand.jpg.
+Make a text file with the same name, 01-my-new-brand.txt. On your computer you can use Notepad. On GitHub, use Add file → Create new file, type projects/01-my-new-brand.txt as the name, and paste the link.
+In the text file, put the Behance link on the first line, like https://www.behance.net/gallery/123456789/My-New-Brand.
+Optionally, a second line becomes the short description under the title, for example Logo and brand identity for a coffee shop. Without it, the card says “View the full project on Behance.”
+Commit both files. The project appears in Featured Projects within a minute or two, and clicking it opens the Behance page.
