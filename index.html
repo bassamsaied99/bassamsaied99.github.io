@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bassam Saied – Content Creator &amp; Designer</title>
-<meta name="description" content="Bassam Saied is a content creator and designer creating product photography, short-form video, Reels and graphic design for brands.">
+<meta name="description" content="Bassam Saied is a content creator and designer making product photography, short-form video, Reels, designs for social media and visual identities for brands.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-60 -60 612 611%22%3E%3Crect x=%22-60%22 y=%22-60%22 width=%22612%22 height=%22611%22 rx=%22130%22 fill=%22%230a0516%22/%3E%3Cdefs%3E%3Cmask id=%22m%22%3E%3Crect x=%22-60%22 y=%22-60%22 width=%22612%22 height=%22611%22 fill=%22%23fff%22/%3E%3Cpath d=%22M421.5 355.0C428.6 383.6 462.4 416.2 492.0 423.0C462.4 429.8 428.6 462.4 421.5 491.0C414.4 462.4 380.6 429.8 351.0 423.0C380.6 416.2 414.4 383.6 421.5 355.0Z%22 fill=%22%23000%22 stroke=%22%23000%22 stroke-width=%2216%22 stroke-linejoin=%22round%22/%3E%3C/mask%3E%3C/defs%3E%3Cg fill=%22%23E4E4E4%22%3E%3Cpath mask=%22url(%23m)%22 fill-rule=%22evenodd%22 d=%22M0 0H312A108 108 0 0 1 342.9 211.5A108 108 0 0 1 312 423H0Z M213.0 145.0C224.5 178.1 250.4 203.0 285.0 214.0C250.4 225.0 224.5 249.9 213.0 283.0C201.5 249.9 175.6 225.0 141.0 214.0C175.6 203.0 201.5 178.1 213.0 145.0Z%22/%3E%3Cpath d=%22M421.5 355.0C428.6 383.6 462.4 416.2 492.0 423.0C462.4 429.8 428.6 462.4 421.5 491.0C414.4 462.4 380.6 429.8 351.0 423.0C380.6 416.2 414.4 383.6 421.5 355.0Z%22/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=Unbounded:wght@800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=Unbounded:wght@800;900&family=Syne:wght@800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    THEME TOKENS – change these to re-skin the whole site.
@@ -25,6 +26,7 @@
 
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-name:    "Unbounded", "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;   /* font for your name */
+  --font-band:    "Syne", "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;   /* font for the word strip above the reels */
   --font-body:    "DM Sans", "Segoe UI", system-ui, sans-serif;
 
   --radius: 18px;
@@ -104,11 +106,15 @@ main, footer.site { position: relative; z-index: 1; }
 }
 .hero .wrap { will-change: transform, opacity; }
 
-.band { overflow: hidden; padding: 1.5rem 0; }
+.band { overflow: hidden; padding: 2.2rem 0; }
 .band-track {
-  display: flex; gap: 3.5rem; width: max-content; white-space: nowrap; will-change: transform;
-  font: 900 clamp(3rem, 10vw, 7.5rem)/1 var(--font-name);
-  color: transparent; -webkit-text-stroke: 1.5px rgba(169, 139, 255, .55);
+  display: flex; align-items: center; gap: 2.8rem; width: max-content; white-space: nowrap; will-change: transform;
+  font: 800 clamp(2.6rem, 7.5vw, 5.6rem)/1 var(--font-band);
+}
+/* flat, clear glass lettering: one even see-through fill, no outline, no shading */
+.band-track .w {
+  display: block; padding: 0 0 .05em;
+  color: rgba(255, 255, 255, .26);
 }
 
 /* cards come from different directions */
@@ -142,50 +148,68 @@ main, footer.site { position: relative; z-index: 1; }
 section { padding: clamp(3rem, 7vw, 5.5rem) 0; }
 h2 { font: 800 clamp(2rem, 4.5vw, 3rem)/1.05 var(--font-display); letter-spacing: -.03em; margin: 0 0 2.4rem; }
 
-/* ---------- Videos (horizontal, endless) ---------- */
-.vhead { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
-.vhead h2 { margin: 0; }
-.varrows { display: flex; gap: .5rem; }
-.varrows button, .pcontrols > button {
+/* ---------- Videos (reels) ---------- */
+#videos { position: relative; }
+#videos::before {
+  content: ""; position: absolute; left: 50%; top: 56%; width: min(1000px, 100vw); height: 900px;
+  transform: translate(-50%, -50%); pointer-events: none;
+  background: radial-gradient(closest-side, rgba(124, 58, 237, .30) 0%, rgba(124, 58, 237, .20) 28%,
+    rgba(124, 58, 237, .10) 55%, rgba(124, 58, 237, .035) 80%, transparent 100%);
+}
+#videos .wrap { position: relative; z-index: 1; }
+#videos h2 { text-align: center; }
+.vsub { text-align: center; color: var(--ink-soft); margin: -1.6rem 0 -1rem; }
+#videos .pcontrols { margin-top: -1.4rem; }
+.pcontrols > button {
   width: 46px; height: 46px; border-radius: 50%; background: var(--surface); color: var(--ink);
   border: 1px solid var(--line); font: 700 1.4rem/1 var(--font-body); cursor: pointer;
   transition: border-color .2s, background .2s;
 }
-.varrows button:hover, .pcontrols > button:hover { border-color: var(--glow); background: rgba(40, 22, 78, .8); }
+.pcontrols > button:hover { border-color: var(--glow); background: rgba(40, 22, 78, .8); }
 .vlist {
   list-style: none; margin: 0; display: flex; overflow-x: auto;
-  padding: 2rem calc(50% - min(115px, 35vw));
+  padding: 4rem calc(50% - min(130px, 35vw));
   scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
 }
 .vlist::-webkit-scrollbar { display: none; }
-.vlist li { flex: none; width: min(230px, 70vw); margin-right: 1rem; scroll-snap-align: center; will-change: transform, opacity; }
+.vlist li { flex: none; width: min(260px, 70vw); margin-right: 1rem; scroll-snap-align: center; will-change: transform, opacity; }
 .vrow {
-  display: block; width: 100%; text-align: left; padding: .7rem;
-  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-  color: inherit; font: inherit; cursor: pointer;
-  transition: border-color .3s, background .3s, box-shadow .3s;
+  display: block; width: 100%; padding: 0; background: none; border: 0; border-radius: 28px;
+  color: inherit; font: inherit; text-align: left; cursor: pointer;
 }
-.vrow.active { border-color: var(--glow); box-shadow: 0 0 70px rgba(124, 58, 237, .5); }
-.vrow:hover { border-color: var(--glow); background: rgba(40, 22, 78, .7); }
 .vthumb {
-  display: block; position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 12px; overflow: hidden;
-  background: linear-gradient(135deg, #4A1CAA, #170830);
+  display: block; position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden;
+  background: linear-gradient(135deg, #4A1CAA, #170830); border: 1px solid rgba(255, 255, 255, .18);
+  box-shadow: 0 24px 50px -18px rgba(0, 0, 0, .8); transition: box-shadow .4s, border-color .4s;
+}
+.vrow.active .vthumb {
+  border-color: rgba(169, 139, 255, .9);
+  box-shadow: 0 0 0 3px rgba(169, 139, 255, .3), 0 24px 60px -24px rgba(124, 58, 237, .7);
 }
 .vthumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.vscrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5, 3, 11, .9) 0%, rgba(5, 3, 11, 0) 50%); }
+.vinfo { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.1rem 1.2rem 1.4rem; }
+.vinfo h3 { font: 700 1.2rem var(--font-display); margin: 0; color: #fff; letter-spacing: -.01em; }
+.vinfo p { margin: .15rem 0 0; color: rgba(255, 255, 255, .72); font-size: .9rem; }
+.vhint {
+  position: absolute; top: .9rem; left: .9rem; padding: .25rem .75rem; border-radius: 999px;
+  font-size: .8rem; font-weight: 500; color: #fff; background: rgba(5, 3, 11, .5);
+  border: 1px solid rgba(255, 255, 255, .28); opacity: 0; transition: opacity .4s;
+}
+.vrow.active.playing .vhint { opacity: 1; }
 .vplay {
-  position: absolute; inset: 0; margin: auto; width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(5, 3, 11, .6); border: 2px solid #fff; transition: opacity .3s;
+  position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(5, 3, 11, .55); border: 2px solid #fff; transition: opacity .3s;
+}
+.vplay::after {
+  content: ""; position: absolute; left: 22px; top: 15px;
+  border-left: 17px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent;
 }
 .vrow.playing .vplay { opacity: 0; }
-.vplay::after {
-  content: ""; position: absolute; left: 20px; top: 14px;
-  border-left: 16px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent;
-}
-.vinfo { display: block; padding: .8rem .3rem .2rem; }
-.vinfo h3 { font: 700 1.2rem var(--font-display); margin: 0; letter-spacing: -.01em; }
-.vinfo p { margin: .2rem 0 0; color: var(--ink-soft); font-size: .95rem; }
+.vbar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .18); opacity: 0; transition: opacity .3s; }
+.vbar i { display: block; width: 0; height: 100%; background: linear-gradient(90deg, #A98BFF, #FFC93C); }
+.vrow.active .vbar { opacity: 1; }
 .vrow.missing { cursor: default; opacity: .6; }
-.vrow.missing:hover { border-color: var(--line); background: var(--surface); }
 .vrow.missing .vplay { display: none; }
 
 dialog.vmodal {
@@ -240,7 +264,7 @@ a.project:hover { border-color: var(--glow); }
 .plink { display: inline-block; margin-top: .9rem; font-weight: 700; color: var(--glow); }
 
 /* ---------- Focus areas ---------- */
-.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; }
+.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 1.2rem; }
 .area {
   backdrop-filter: blur(6px);
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -349,11 +373,70 @@ html, body { overflow-x: hidden; }
 @media (max-width: 900px) { .d.hide-sm { display: none; } }
 @media (max-width: 700px) { .d { width: calc(var(--s) * .55px); } .d.spin { left: 3%; top: 3%; } }
 @media (prefers-reduced-motion: reduce) { .d svg, .cdeco svg { animation: none !important; } }
+
+/* ---------- Designs gallery ---------- */
+#designs h2 { text-align: center; }
+#designs .vsub { margin: -1.6rem 0 2.2rem; }
+.designs {
+  --mt: 0px; --mb: 0px;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  max-height: min(82vh, 780px); overflow-y: auto; padding: .25rem .5rem .25rem .25rem;
+  scrollbar-width: thin; scrollbar-color: rgba(169, 139, 255, .5) transparent;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--mt), #000 calc(100% - var(--mb)), transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 var(--mt), #000 calc(100% - var(--mb)), transparent 100%);
+}
+.designs::-webkit-scrollbar { width: 8px; }
+.designs::-webkit-scrollbar-thumb { background: rgba(169, 139, 255, .45); border-radius: 8px; }
+.dcol { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1.2rem; }
+.dhint { text-align: center; color: var(--ink-soft); font-size: .9rem; margin: .9rem 0 0; }
+.dsg {
+  display: block; position: relative; width: 100%; margin: 0; padding: 0;
+  border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--surface);
+  color: #fff; font: inherit; text-align: left; cursor: zoom-in;
+}
+.dsg:not(.ready):not(.ph) { aspect-ratio: 4 / 5; }
+.dsg img { display: block; width: 100%; height: auto; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+.dsg:hover img { transform: scale(1.05); }
+.dsg span {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem 1rem .9rem; font-weight: 700;
+  background: linear-gradient(to top, rgba(5, 3, 11, .88), transparent);
+  opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s;
+}
+.dsg:hover span, .dsg:focus-visible span { opacity: 1; transform: none; }
+@media (hover: none) { .dsg span { opacity: 1; transform: none; } }
+.dsg.ph { cursor: default; display: grid; place-items: center; border-style: dashed; color: var(--ink-soft); min-height: 160px; }
+.dnote { text-align: center; color: var(--ink-soft); max-width: 36rem; margin: 1rem auto 0; font-size: .95rem; }
+@media (max-width: 560px) { .designs { gap: .8rem; max-height: 76vh; } .dcol { gap: .8rem; } .dsg { border-radius: 16px; } }
+
+dialog.dlight { border: 0; background: transparent; padding: 0; color: #fff; max-width: 96vw; max-height: 96vh; overflow: visible; }
+dialog.dlight::backdrop { background: rgba(3, 2, 8, .9); backdrop-filter: blur(6px); }
+.dlight img { display: block; max-width: 90vw; max-height: 80vh; margin: 0 auto; border-radius: 18px; }
+.dlight p { text-align: center; margin: .9rem 0 0; font-weight: 700; font-family: var(--font-display); }
+.dl-x, .dl-nav {
+  position: fixed; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
+  background: rgba(24, 13, 46, .75); color: #fff; font: 700 1.5rem/1 var(--font-body); cursor: pointer;
+}
+.dl-x { top: 1rem; right: 1rem; }
+.dl-nav { top: 50%; transform: translateY(-50%); }
+.dl-prev { left: 1rem; } .dl-next { right: 1rem; }
+.dl-x:hover, .dl-nav:hover { border-color: var(--glow); }
+
+/* ---------- Purble B logo + alias ---------- */
+.logo-mark { display: block; width: auto; height: clamp(58px, 8vw, 84px); margin: 0 auto 1.5rem; color: #E4E4E4; }
+.alias { margin: 1.1rem 0 0; font: 500 clamp(.95rem, 1.6vw, 1.1rem)/1.3 var(--font-body); letter-spacing: .02em; color: var(--glow); }
+.hero .role { margin-top: .9rem; }
+.fmark { width: 1.35em; height: 1.35em; vertical-align: -.4em; margin-right: .5rem; color: #E4E4E4; }
+@media (prefers-reduced-motion: no-preference) {
+  .logo-mark, .alias { animation: rise .8s cubic-bezier(.2, .8, .2, 1) both; }
+  .alias { animation-delay: .2s; }
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="pbLogo" viewBox="0 0 491 488"><path fill="currentColor" fill-rule="evenodd" d="M0 0H315A105.05 105.05 0 0 1 333 208.5A105.05 105.05 0 0 1 315 417H0ZM213.00 138.00C227.81 174.66 246.84 193.69 283.50 208.50C246.84 223.31 227.81 242.34 213.00 279.00C198.19 242.34 179.16 223.31 142.50 208.50C179.16 193.69 198.19 174.66 213.00 138.00ZM421.00 348.00C435.70 384.40 454.60 403.30 491.00 418.00C454.60 432.70 435.70 451.60 421.00 488.00C406.30 451.60 387.40 432.70 351.00 418.00C387.40 403.30 406.30 384.40 421.00 348.00Z"/></symbol></svg>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="orb" aria-hidden="true"></div>
 <div class="glow" aria-hidden="true"></div>
@@ -372,7 +455,9 @@ html, body { overflow-x: hidden; }
       <span class="d hide-sm far" data-speed="0.24" style="left:26%;top:8%;--s:54;--dur:11s;--delay:-6s"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M512 256c0 .9 0 1.8 0 2.7-.4 36.5-33.6 61.3-70.1 61.3L344 320c-26.5 0-48 21.5-48 48 0 3.4 .4 6.7 1 9.9 2.1 10.2 6.5 20 10.8 29.9 6.1 13.8 12.1 27.5 12.1 42 0 31.8-21.6 60.7-53.4 62-3.5 .1-7 .2-10.6 .2-141.4 0-256-114.6-256-256S114.6 0 256 0 512 114.6 512 256zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm0-96a32 32 0 1 0 0-64 32 32 0 1 0 0 64zM288 96a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm96 96a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/></svg></span>
     </div>
     <div class="wrap">
+      <svg class="logo-mark" role="img" aria-label="Purble B logo" viewBox="0 0 491 488"><use href="#pbLogo"/></svg>
       <h1>Bassam <span>Saied</span></h1>
+      <p class="alias">I’m Purble B</p>
       <p class="role">Content Creator &amp; Designer</p>
       <div class="actions">
         <a class="btn solid" href="#contact">Get in touch</a>
@@ -380,36 +465,33 @@ html, body { overflow-x: hidden; }
       </div>
       <p class="lede">
         I create content and design for brands: product photography, short-form video and Reels,
-        and graphic design for promotions and social media. I film, edit and design in Adobe Photoshop,
-        Illustrator, Canva, CapCut and VN to make products look clear and worth stopping for.
+        designs for social media, and visual identities. I film, edit and design in Adobe Photoshop,
+        Illustrator, Canva, CapCut and VN to make brands look clear and worth stopping for.
       </p>
     </div>
   </div>
 
   <div class="band" id="band" aria-hidden="true">
-    <div class="band-track" id="bandTrack">
-      <span>Photography</span><span>Video</span><span>Reels</span><span>Graphic design</span>
-      <span>Photography</span><span>Video</span><span>Reels</span><span>Graphic design</span>
-      <span>Photography</span><span>Video</span><span>Reels</span><span>Graphic design</span>
-    </div>
+    <div class="band-track" id="bandTrack"><span class="w">Photography</span><span class="w">Video</span><span class="w">Reels</span><span class="w">Social media design</span><span class="w">Visual identity</span><span class="w">Brand identity</span><span class="w">Product photography</span><span class="w">Short-form video</span><span class="w">Logos</span><span class="w">Photography</span><span class="w">Video</span><span class="w">Reels</span><span class="w">Social media design</span><span class="w">Visual identity</span><span class="w">Brand identity</span><span class="w">Product photography</span><span class="w">Short-form video</span><span class="w">Logos</span><span class="w">Photography</span><span class="w">Video</span><span class="w">Reels</span><span class="w">Social media design</span><span class="w">Visual identity</span><span class="w">Brand identity</span><span class="w">Product photography</span><span class="w">Short-form video</span><span class="w">Logos</span></div>
   </div>
 
   <section id="videos">
     <div class="wrap">
-      <div class="vhead">
-        <h2>What I made</h2>
-        <div class="varrows">
-          <button type="button" id="vprev" aria-label="Previous videos">&#8249;</button>
-          <button type="button" id="vnext" aria-label="Next videos">&#8250;</button>
-        </div>
-      </div>
+      <h2>Reels &amp; Motion</h2>
+      <p class="vsub">Tap a reel to watch it with sound.</p>
       <ul class="vlist" id="vlist"></ul>
+      <div class="pcontrols">
+        <button type="button" id="vprev" aria-label="Previous reel">&#8249;</button>
+        <div class="pdots" id="vdots"></div>
+        <button type="button" id="vnext" aria-label="Next reel">&#8250;</button>
+      </div>
+      <p class="dnote" id="vnote" hidden>Preview only. These empty tiles do not show on your live site. Put your reels (.mp4) in a folder named <b>media</b> in your GitHub repo and they appear here by themselves.</p>
     </div>
   </section>
 
   <section id="projects">
     <div class="wrap">
-      <h2>Projects</h2>
+      <h2>Featured Projects</h2>
       <div class="projects" id="plist" tabindex="0" aria-label="Projects, use arrow keys to browse"></div>
       <div class="pcontrols">
         <button type="button" id="pprev" aria-label="Previous project">&#8249;</button>
@@ -419,15 +501,24 @@ html, body { overflow-x: hidden; }
     </div>
   </section>
 
+  <section id="designs">
+    <div class="wrap">
+      <h2>Visual Work</h2>
+      <p class="vsub">Social media designs and visual identities.</p>
+      <div class="designs" id="dlist" role="region" aria-label="Designs gallery, scrollable" tabindex="0"></div>
+      <p class="dhint" id="dhint" hidden>Scroll to see more designs</p>
+      <p class="dnote" id="dnote" hidden>Preview only. This note and these empty tiles do not show on your live site. Put your design images in a folder named <b>media</b> in your GitHub repo. Photos appear here and .mp4 reels appear in Reels &amp; Motion, all by themselves.</p>
+    </div>
+  </section>
+
   <section id="work">
     <div class="wrap">
-      <h2>What I work on</h2>
+      <h2>What I Offer</h2>
       <div class="areas">
         <article class="area big">
           <span class="aicon"><svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zM48 368l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm304-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM48 240l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zm304-16c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0zM48 112l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16L64 96c-8.8 0-16 7.2-16 16zM352 96c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0z"/></svg></span>
           <h3>Short-form video &amp; Reels</h3>
           <p>Filming, editing and publishing Reels and other product-focused videos made for social media.</p>
-          <span class="tag">Edited in CapCut and VN</span>
         </article>
         <article class="area">
           <span class="aicon"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M149.1 64.8L138.7 96 64 96C28.7 96 0 124.7 0 160L0 416c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256c0-35.3-28.7-64-64-64l-74.7 0-10.4-31.2C356.4 45.2 338.1 32 317.4 32L194.6 32c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg></span>
@@ -436,8 +527,13 @@ html, body { overflow-x: hidden; }
         </article>
         <article class="area">
           <span class="aicon"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M368.5 18.3l-50.1 50.1 125.3 125.3 50.1-50.1c21.9-21.9 21.9-57.3 0-79.2L447.7 18.3c-21.9-21.9-57.3-21.9-79.2 0zM279.3 97.2l-.5 .1-144.1 43.2c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-2.9 8.7-1.9 18.2 2.5 26L161.7 316.4c-1.1-4-1.6-8.1-1.6-12.4 0-26.5 21.5-48 48-48s48 21.5 48 48-21.5 48-48 48c-4.3 0-8.5-.6-12.4-1.6L40.3 505.7c7.8 4.4 17.2 5.4 26 2.5l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 .1-.5-135.5-135.5z"/></svg></span>
-          <h3>Graphic design</h3>
-          <p>Promotional and product designs created in Adobe Photoshop, Adobe Illustrator and Canva.</p>
+          <h3>Social media design</h3>
+          <p>Designs for social media posts, promotions and products, made in Adobe Photoshop, Illustrator and Canva.</p>
+        </article>
+        <article class="area">
+          <span class="aicon"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M0 48C0 21.5 21.5 0 48 0l96 0c26.5 0 48 21.5 48 48l0 368c0 53-43 96-96 96S0 469 0 416L0 48zM240 409.6l0-271.5 48.1-48.1c18.7-18.7 49.1-18.7 67.9 0l67.9 67.9c18.7 18.7 18.7 49.1 0 67.9L240 409.6zM205.5 512l192-192 66.6 0c26.5 0 48 21.5 48 48l0 96c0 26.5-21.5 48-48 48l-258.5 0zM80 64c-8.8 0-16 7.2-16 16l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16L80 64zM64 208l0 32c0 8.8 7.2 16 16 16l32 0c8.8 0 16-7.2 16-16l0-32c0-8.8-7.2-16-16-16l-32 0c-8.8 0-16 7.2-16 16zM96 440a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg></span>
+          <h3>Visual identity</h3>
+          <p>Logos and brand identities that give a business one clear, consistent look.</p>
         </article>
         <article class="area">
           <span class="aicon"><svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path fill="url(#glass)" stroke="rgba(255,255,255,.8)" stroke-width="12" stroke-linejoin="round" d="M214.7 .7c17.3 3.7 28.3 20.7 24.6 38l-19.1 89.3 126.5 0 22-102.7C372.4 8 389.4-3 406.7 .7s28.3 20.7 24.6 38L412.2 128 480 128c17.7 0 32 14.3 32 32s-14.3 32-32 32l-81.6 0-27.4 128 67.8 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-81.6 0-22 102.7c-3.7 17.3-20.7 28.3-38 24.6s-28.3-20.7-24.6-38l19.1-89.3-126.5 0-22 102.7c-3.7 17.3-20.7 28.3-38 24.6s-28.3-20.7-24.6-38L99.8 384 32 384c-17.7 0-32-14.3-32-32s14.3-32 32-32l81.6 0 27.4-128-67.8 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l81.6 0 22-102.7C180.4 8 197.4-3 214.7 .7zM206.4 192l-27.4 128 126.5 0 27.4-128-126.5 0z"/></svg></span>
@@ -461,7 +557,7 @@ html, body { overflow-x: hidden; }
           <ul>
             <li>Photograph products and create short-form video content for social media.</li>
             <li>Film, edit and publish Reels and other product-focused content.</li>
-            <li>Create promotional and product designs.</li>
+            <li>Create promotional and product designs for social media.</li>
           </ul>
         </article>
 
@@ -471,7 +567,7 @@ html, body { overflow-x: hidden; }
 
   <section id="skills">
     <div class="wrap">
-      <h2>Skills &amp; tools</h2>
+      <h2>Toolkit</h2>
       <div class="skills">
         <div>
           <h3>Video &amp; content</h3>
@@ -482,7 +578,7 @@ html, body { overflow-x: hidden; }
         </div>
         <div>
           <h3>Design</h3>
-          <ul class="chips"><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Canva</li></ul>
+          <ul class="chips"><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Canva</li><li>Social media design</li><li>Visual identity</li><li>Brand identity</li></ul>
         </div>
       </div>
     </div>
@@ -495,8 +591,8 @@ html, body { overflow-x: hidden; }
     </div>
     <div class="wrap">
       <div class="contact-box">
-        <h2>Let’s talk</h2>
-        <p>Need product photos, Reels or designs for your brand? Send me a message.</p>
+        <h2>Let’s Work Together</h2>
+        <p>Need Reels, social media designs or a visual identity for your brand? Send me a message.</p>
         <div class="socials">
           <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
           <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
@@ -521,9 +617,17 @@ html, body { overflow-x: hidden; }
 
 <!-- Social icons: Font Awesome Free (CC BY 4.0), fontawesome.com/license/free -->
 <footer class="site">
-  <div class="wrap">© <span id="yr">2026</span> Bassam Saied</div>
+  <div class="wrap"><svg class="fmark" aria-hidden="true" viewBox="0 0 491 488"><use href="#pbLogo"/></svg> © <span id="yr">2026</span> Bassam Saied</div>
 </footer>
 <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<dialog class="dlight" id="dlight" aria-label="Design viewer">
+  <button type="button" class="dl-x" id="dlx" aria-label="Close">&times;</button>
+  <button type="button" class="dl-nav dl-prev" id="dlprev" aria-label="Previous design">&#8249;</button>
+  <img id="dimg" alt="">
+  <button type="button" class="dl-nav dl-next" id="dlnext" aria-label="Next design">&#8250;</button>
+  <p id="dcap"></p>
+</dialog>
+
 <dialog class="vmodal" id="vmodal" aria-labelledby="vtitle">
   <div class="vbar"><h3 id="vtitle"></h3><button type="button" id="vclose">Close</button></div>
   <video id="vplayer" controls playsinline></video>
@@ -543,8 +647,9 @@ html, body { overflow-x: hidden; }
    ============================================================ */
 var VIDEOS = [];
 
-/* AUTOMATIC MODE (easiest): every .mp4 you put in the "videos" folder of your GitHub repo
-   shows up here by itself. The file name becomes the title: "01-product-reel.mp4" -> "Product reel".
+/* AUTOMATIC MODE (easiest): put your files in a folder named "media" (or "videos" / "designs") in your
+   GitHub repo. Videos (.mp4) show up in Reels & Motion, pictures (.jpg .png .webp) in Visual Work, all by
+   themselves. The file name becomes the title: "01-product-reel.mp4" -> "Product reel".
    Files are listed in name order, so start names with 01-, 02-... to choose the order. */
 var AUTO_FOLDER = true;
 var AUTO_REPO = "";   /* only needed with a custom domain, e.g. "yourusername/yourusername.github.io" */
@@ -562,7 +667,7 @@ function initVideos() {
 
   var prev = document.getElementById('vprev'), next = document.getElementById('vnext');
   var n = VIDEOS.length, step = 0, setW = 0, repeats = 1;
-  var active = null, visible = false, scrolling = false, timer = 0, raf = 0;
+  var active = null, visible = false, scrolling = false, timer = 0, raf = 0, dots = [];
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var resume = function () {};
 
@@ -570,8 +675,8 @@ function initVideos() {
     var li = document.createElement('li');
     var btn = document.createElement('button');
     btn.type = 'button'; btn.className = 'vrow';
-    btn.innerHTML = '<span class="vthumb"><video muted loop playsinline preload="metadata"></video><span class="vplay"></span></span>' +
-      '<span class="vinfo"><h3></h3><p>Video</p></span>';
+    btn.innerHTML = '<span class="vthumb"><video muted loop playsinline preload="metadata"></video><span class="vscrim"></span><span class="vhint">Tap for sound</span><span class="vplay"></span>' +
+      '<span class="vinfo"><h3></h3><p>Video</p></span><span class="vbar"><i></i></span></span>';
     btn.querySelector('h3').textContent = v.title;
     var thumb = btn.querySelector('video'), meta = btn.querySelector('p');
     li._thumb = btn.querySelector('.vthumb');
@@ -586,10 +691,14 @@ function initVideos() {
         pic.src = posterSrc;
         li._thumb.insertBefore(pic, btn.querySelector('.vplay'));
       }
+    } else if (v.placeholder) {
+      btn.classList.add('missing'); btn.disabled = true; meta.textContent = 'Preview only'; thumb.remove();
     } else {
       thumb.addEventListener('loadedmetadata', function () { meta.textContent = fmt(thumb.duration); });
       thumb.addEventListener('playing', function () { btn.classList.add('playing'); });
       thumb.addEventListener('pause', function () { btn.classList.remove('playing'); });
+      var bar = btn.querySelector('.vbar i');
+      thumb.addEventListener('timeupdate', function () { if (thumb.duration) bar.style.width = (thumb.currentTime / thumb.duration * 100).toFixed(1) + '%'; });
       thumb.addEventListener('error', function () {
         btn.classList.add('missing'); btn.disabled = true; meta.textContent = 'Video not uploaded yet';
         thumb.remove();
@@ -622,6 +731,7 @@ function initVideos() {
   function frame() {
     raf = 0;
     var pos = step ? list.scrollLeft / step : 0, kids = list.children;
+    if (dots.length) { var di = Math.round(pos) % n; dots.forEach(function (d, i) { d.classList.toggle('on', i === di); }); }
     for (var i = 0; i < kids.length; i++) {
       var li = kids[i], d = Math.abs(i - pos), t = Math.min(d, 1);
       if (d > 3.2) { li.style.opacity = 0; continue; }
@@ -673,6 +783,15 @@ function initVideos() {
     repeats = Math.max(1, Math.ceil((list.clientWidth + step) / (step * n)));
     setW = step * n * repeats;
     for (var r = 1; r < repeats * 3; r++) VIDEOS.forEach(function (v) { list.appendChild(card(v, true)); });
+    var dotsBox = document.getElementById('vdots');
+    VIDEOS.forEach(function (v, i) {
+      var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Show ' + v.title);
+      d.addEventListener('click', function () {
+        var cur = Math.round(list.scrollLeft / step);
+        list.scrollTo({ left: (cur - (cur % n) + i) * step, behavior: 'smooth' });
+      });
+      dotsBox.appendChild(d); dots.push(d);
+    });
     list.scrollLeft = setW;
     frame();
 
@@ -716,33 +835,59 @@ function prettyName(file) {
   var t = file.replace(/\.[^.]+$/, '').replace(/^\d+[-_. ]*/, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
   return t ? t.charAt(0).toUpperCase() + t.slice(1) : file;
 }
+/* ---------- shared by Reels and Visual Work: read the file list of your GitHub repo ---------- */
+function repoName() {
+  if (AUTO_REPO) return AUTO_REPO;
+  var m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+  if (!m) return '';
+  var seg = location.pathname.split('/')[1];
+  return m[1] + '/' + ((seg && seg.indexOf('.') < 0) ? seg : m[1] + '.github.io');
+}
+function baseName(p) { return p.split('/').pop(); }
+function byName(a, b) { return baseName(a).localeCompare(baseName(b), undefined, { numeric: true }); }
+function encodePath(p) { return p.split('/').map(encodeURIComponent).join('/'); }
+var _repoFiles = null;
+function getRepoFiles() {                     /* one lookup, shared; resolves to a list of file paths, or null if unavailable */
+  if (_repoFiles) return _repoFiles;
+  var repo = repoName();
+  if (!AUTO_FOLDER || !repo) return (_repoFiles = Promise.resolve(null));
+  var key = 'files:' + repo;
+  try { var c = JSON.parse(sessionStorage.getItem(key)); if (c && Date.now() - c.t < 60000) return (_repoFiles = Promise.resolve(c.files)); } catch (e) {}
+  var api = 'https://api.github.com/repos/' + repo;
+  function save(files) { try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), files: files })); } catch (e) {} return files; }
+  _repoFiles = fetch(api + '/git/trees/HEAD?recursive=1')
+    .then(function (r) { if (!r.ok) throw new Error('tree'); return r.json(); })
+    .then(function (j) { return save((j.tree || []).filter(function (n) { return n.type === 'blob'; }).map(function (n) { return n.path; })); })
+    .catch(function () {                      /* fallback: look inside the three media folders one by one */
+      return Promise.all(['media', 'videos', 'designs'].map(function (f) {
+        return fetch(api + '/contents/' + f).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+          .then(function (items) { return items && items.map ? items.filter(function (i) { return i.type === 'file'; }).map(function (i) { return f + '/' + i.name; }) : null; });
+      })).then(function (parts) {
+        var ok = parts.filter(function (p) { return p; });
+        return ok.length ? save([].concat.apply([], ok)) : null;
+      });
+    });
+  return _repoFiles;
+}
+
+/* Reels: every .mp4 (.webm .m4v) in the "media" or "videos" folder, in name order */
+var REEL_FILE = /^(media|videos)\/[^\/]+\.(mp4|webm|m4v)$/i;
 function loadVideoList(done) {
   var manual = VIDEOS.filter(function (v) { return !v.src; });      /* Drive / embed entries stay */
-  var repo = AUTO_REPO;
-  if (!repo) {
-    var m = location.hostname.match(/^([^.]+)\.github\.io$/i);
-    if (m) { var seg = location.pathname.split('/')[1]; repo = m[1] + '/' + ((seg && seg.indexOf('.') < 0) ? seg : m[1] + '.github.io'); }
-  }
-  if (!AUTO_FOLDER || !repo) { done(VIDEOS); return; }
-  var key = 'videos:' + repo, cached = null;
-  try { cached = JSON.parse(sessionStorage.getItem(key)); } catch (e) {}
-  function finish(files) {
-    var found = files.map(function (n) { return { title: prettyName(n), src: 'videos/' + encodeURIComponent(n) }; });
+  getRepoFiles().then(function (files) {
+    if (!files) { done(VIDEOS); return; }
+    var found = files.filter(function (p) { return REEL_FILE.test(p); }).sort(byName)
+      .map(function (p) { return { title: prettyName(baseName(p)), src: encodePath(p) }; });
     done(found.length ? manual.concat(found) : VIDEOS);
-  }
-  if (cached && Date.now() - cached.t < 60000) { finish(cached.files); return; }
-  fetch('https://api.github.com/repos/' + repo + '/contents/videos')
-    .then(function (r) { if (!r.ok) throw new Error('no folder'); return r.json(); })
-    .then(function (items) {
-      var files = items.filter(function (i) { return i.type === 'file' && /\.(mp4|webm|m4v)$/i.test(i.name); })
-        .map(function (i) { return i.name; })
-        .sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true }); });
-      try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), files: files })); } catch (e) {}
-      finish(files);
-    })
-    .catch(function () { done(VIDEOS); });
+  });
 }
-loadVideoList(function (list) { VIDEOS = list; initVideos(); });
+loadVideoList(function (list) {
+  if (!list.length && !repoName()) {          /* preview only: empty tiles + a hint, like Visual Work */
+    list = [1, 2, 3].map(function () { return { title: 'Your reel here', placeholder: true }; });
+    document.getElementById('vnote').hidden = false;
+  }
+  VIDEOS = list; initVideos();
+});
 </script>
 
 <script>
@@ -862,6 +1007,103 @@ var PROJECTS = [
   });
   window.addEventListener('resize', function () {
     var idx = Math.round(list.scrollLeft / step); measure(); list.scrollLeft = idx * step;
+  });
+})();
+</script>
+
+<script>
+/* ============================================================
+   YOUR DESIGNS
+   Easiest: drag your design images (.jpg .png .webp) into a folder named "media" (or "designs")
+   in your GitHub repo. They appear here by themselves. The file name becomes the caption
+   ("01-instagram-post.jpg" -> "Instagram post"); start names with 01-, 02-... to set the order.
+   Optional manual list: { title: "Instagram post", src: "designs/post.jpg" }
+   ============================================================ */
+var DESIGNS = [];
+
+(function () {
+  var box = document.getElementById('dlist'), section = document.getElementById('designs'), note = document.getElementById('dnote');
+  var dlg = document.getElementById('dlight'), dimg = document.getElementById('dimg'), dcap = document.getElementById('dcap');
+  var items = [], cur = 0, nodes = [], cols = [], hint = document.getElementById('dhint');
+
+  /* masonry columns: 3 on desktop, 2 on phones; items fill left to right */
+  function colCount() { return window.innerWidth <= 560 ? 2 : 3; }
+  function layout() {
+    var n = colCount();
+    if (cols.length === n) return;
+    box.innerHTML = ''; cols = [];
+    for (var c = 0; c < n; c++) { var d = document.createElement('div'); d.className = 'dcol'; box.appendChild(d); cols.push(d); }
+    nodes.forEach(function (el, i) { cols[i % n].appendChild(el); });
+    updateScroll();
+  }
+  /* fade the edges and show a hint while there is more to scroll to */
+  function updateScroll() {
+    var more = box.scrollHeight - box.clientHeight > 8;
+    box.style.setProperty('--mt', more && box.scrollTop > 6 ? '36px' : '0px');
+    box.style.setProperty('--mb', more && box.scrollTop < box.scrollHeight - box.clientHeight - 6 ? '60px' : '0px');
+    hint.hidden = !(more && box.scrollTop < box.scrollHeight - box.clientHeight - 6);
+  }
+  box.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('resize', layout);
+  layout();
+
+  var live = !!repoName();
+
+  function openAt(i) {
+    cur = (i + items.length) % items.length;
+    dimg.src = items[cur].src; dimg.alt = items[cur].title; dcap.textContent = items[cur].title;
+    if (!dlg.open) dlg.showModal();
+  }
+  document.getElementById('dlx').addEventListener('click', function () { dlg.close(); });
+  document.getElementById('dlprev').addEventListener('click', function () { openAt(cur - 1); });
+  document.getElementById('dlnext').addEventListener('click', function () { openAt(cur + 1); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') openAt(cur - 1); else if (e.key === 'ArrowRight') openAt(cur + 1);
+  });
+
+  function render(list) {
+    items = list;
+    if (!items.length) {
+      if (live) { section.hidden = true; return; }               /* live site: hide until there are designs */
+      note.hidden = false;                                         /* preview: show empty tiles + a hint */
+      ['4 / 5', '1 / 1', '16 / 10', '1 / 1', '4 / 5', '16 / 10'].forEach(function (r, i) {
+        var t = document.createElement('div'); t.className = 'dsg ph reveal'; t.style.aspectRatio = r;
+        t.style.setProperty('--i', i); t.textContent = 'Your design here'; nodes.push(t); cols[i % cols.length].appendChild(t);
+      });
+      observe(nodes); updateScroll(); return;
+    }
+    items.forEach(function (it, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'dsg reveal';
+      b.style.setProperty('--i', i % 6);
+      var im = new Image(); im.alt = it.title; im.loading = 'lazy'; im.decoding = 'async';
+      im.onerror = function () { b.remove(); updateScroll(); };
+      im.src = it.src;
+      var cap = document.createElement('span'); cap.textContent = it.title;
+      b.appendChild(im); b.appendChild(cap);
+      b.addEventListener('click', function () { openAt(i); });
+      nodes.push(b); cols[i % cols.length].appendChild(b);
+      im.addEventListener('load', function () { b.classList.add('ready'); updateScroll(); });
+    });
+    observe(nodes); updateScroll();
+  }
+  function observe(nodes) {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduce) { Array.prototype.forEach.call(nodes, function (n) { n.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    Array.prototype.forEach.call(nodes, function (n) { io.observe(n); });
+  }
+
+  /* Visual Work: every picture (.jpg .png .webp .avif .gif) in the "media" or "designs" folder, in name order */
+  var PIC_FILE = /^(media|designs)\/[^\/]+\.(jpe?g|png|webp|avif|gif)$/i;
+  var manual = DESIGNS.slice();
+  getRepoFiles().then(function (files) {
+    if (!files) { render(manual); return; }
+    var found = files.filter(function (p) { return PIC_FILE.test(p); }).sort(byName)
+      .map(function (p) { return { title: prettyName(baseName(p)), src: encodePath(p) }; });
+    render(manual.concat(found));
   });
 })();
 </script>
