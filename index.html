@@ -397,13 +397,6 @@ html, body { overflow-x: hidden; }
 .dsg:not(.ready):not(.ph) { aspect-ratio: 4 / 5; }
 .dsg img { display: block; width: 100%; height: auto; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
 .dsg:hover img { transform: scale(1.05); }
-.dsg span {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem 1rem .9rem; font-weight: 700;
-  background: linear-gradient(to top, rgba(5, 3, 11, .88), transparent);
-  opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s;
-}
-.dsg:hover span, .dsg:focus-visible span { opacity: 1; transform: none; }
-@media (hover: none) { .dsg span { opacity: 1; transform: none; } }
 .dsg.ph { cursor: default; display: grid; place-items: center; border-style: dashed; color: var(--ink-soft); min-height: 160px; }
 .dnote { text-align: center; color: var(--ink-soft); max-width: 36rem; margin: 1rem auto 0; font-size: .95rem; }
 @media (max-width: 560px) { .designs { gap: .8rem; max-height: 76vh; } .dcol { gap: .8rem; } .dsg { border-radius: 16px; } }
@@ -411,7 +404,6 @@ html, body { overflow-x: hidden; }
 dialog.dlight { border: 0; background: transparent; padding: 0; color: #fff; max-width: 96vw; max-height: 96vh; overflow: visible; }
 dialog.dlight::backdrop { background: rgba(3, 2, 8, .9); backdrop-filter: blur(6px); }
 .dlight img { display: block; max-width: 90vw; max-height: 80vh; margin: 0 auto; border-radius: 18px; }
-.dlight p { text-align: center; margin: .9rem 0 0; font-weight: 700; font-family: var(--font-display); }
 .dl-x, .dl-nav {
   position: fixed; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line);
   background: rgba(24, 13, 46, .75); color: #fff; font: 700 1.5rem/1 var(--font-body); cursor: pointer;
@@ -625,8 +617,7 @@ dialog.dlight::backdrop { background: rgba(3, 2, 8, .9); backdrop-filter: blur(6
   <button type="button" class="dl-nav dl-prev" id="dlprev" aria-label="Previous design">&#8249;</button>
   <img id="dimg" alt="">
   <button type="button" class="dl-nav dl-next" id="dlnext" aria-label="Next design">&#8250;</button>
-  <p id="dcap"></p>
-</dialog>
+  </dialog>
 
 <dialog class="vmodal" id="vmodal" aria-labelledby="vtitle">
   <div class="vbar"><h3 id="vtitle"></h3><button type="button" id="vclose">Close</button></div>
@@ -1023,7 +1014,7 @@ var DESIGNS = [];
 
 (function () {
   var box = document.getElementById('dlist'), section = document.getElementById('designs'), note = document.getElementById('dnote');
-  var dlg = document.getElementById('dlight'), dimg = document.getElementById('dimg'), dcap = document.getElementById('dcap');
+  var dlg = document.getElementById('dlight'), dimg = document.getElementById('dimg');
   var items = [], cur = 0, nodes = [], cols = [], hint = document.getElementById('dhint');
 
   /* masonry columns: 3 on desktop, 2 on phones; items fill left to right */
@@ -1051,7 +1042,7 @@ var DESIGNS = [];
 
   function openAt(i) {
     cur = (i + items.length) % items.length;
-    dimg.src = items[cur].src; dimg.alt = items[cur].title; dcap.textContent = items[cur].title;
+    dimg.src = items[cur].src; dimg.alt = items[cur].title;
     if (!dlg.open) dlg.showModal();
   }
   document.getElementById('dlx').addEventListener('click', function () { dlg.close(); });
@@ -1079,8 +1070,8 @@ var DESIGNS = [];
       var im = new Image(); im.alt = it.title; im.loading = 'lazy'; im.decoding = 'async';
       im.onerror = function () { b.remove(); updateScroll(); };
       im.src = it.src;
-      var cap = document.createElement('span'); cap.textContent = it.title;
-      b.appendChild(im); b.appendChild(cap);
+      b.setAttribute('aria-label', it.title);
+      b.appendChild(im);
       b.addEventListener('click', function () { openAt(i); });
       nodes.push(b); cols[i % cols.length].appendChild(b);
       im.addEventListener('load', function () { b.classList.add('ready'); updateScroll(); });
